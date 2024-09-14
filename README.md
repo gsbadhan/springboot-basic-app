@@ -6,3 +6,5 @@ springboot basic app with JAVA
 ### Gradle
 ### Lombok
 ### REST Controller
+
+### Swagger UI http://localhost:8090/swagger-ui
