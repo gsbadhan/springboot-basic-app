@@ -16,13 +16,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity(securedEnabled = false, jsr250Enabled = false)
 public class SecurityConfig {
 
-    public SecurityConfig(){
-        System.out.println("sss");
-    }
-
     private static final String[] WHITE_LIST_URL = {
             "/**",
             "/auth/**",
+            "api/v1/auth/**",
             "/v3/api-docs/**",
             "/v3/api-docs.yaml",
             "/swagger-ui/**",
