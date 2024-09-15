@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,10 +31,10 @@ public class StudentController {
             @ApiResponse(responseCode = "201", description = "Successfully created")
     })
     @PostMapping(produces = MimeTypeUtils.APPLICATION_JSON_VALUE, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
-    public StudentDto create(@RequestBody StudentDto studentDto) {
+    public ResponseEntity<StudentDto> create(@RequestBody StudentDto studentDto) {
         log.info("new create request for student={}", studentDto);
         StudentDto studentDtoRsp = studentService.create(studentDto);
-        return studentDtoRsp;
+        return ResponseEntity.status(HttpStatus.CREATED).body(studentDtoRsp);
     }
 
     @Operation(description = "Delete student information")
@@ -40,9 +42,9 @@ public class StudentController {
             @ApiResponse(responseCode = "200", description = "Successfully deleted")
     })
     @DeleteMapping(produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-    public StudentDto delete(Long id) {
+    public ResponseEntity<StudentDto> delete(Long id) {
         log.info("delete request for student id={}", id);
         StudentDto studentDtoRsp = studentService.delete(id);
-        return studentDtoRsp;
+        return ResponseEntity.status(HttpStatus.OK).body(studentDtoRsp);
     }
 }
